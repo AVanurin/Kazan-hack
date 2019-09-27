@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{%  block title %}
+<title>Task table</title>
+{%  endblock %}
+
+{% block content %}
+<table class="table">
+      <thead class="thead-dark">
+    <tr>
+      <th scope="col"> id </th>
+      <th scope="col">Категория</th>
+      <th scope="col"> Тип </th>
+      <th scope="col"> Статус</th>
+    </tr>
+      </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+      <th scope="row"> {{  task['id']  }} </th>
+      <td>  {{  task['category']  }} </td>
+      <td>  {{  task['type']  }} </td>
+      <td>  {{  task['status']  }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+{% endblock %}
+
