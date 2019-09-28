@@ -5,7 +5,7 @@ import view
 import db
 import handlers
 
-db.init_db()
+#db.init_db()
 app = Flask(__name__)
 
 
@@ -21,7 +21,6 @@ def tasks():
 
 @app.route('/form', methods=['POST'])
 def another_name():
-    print("fired!")
     object_id = request.form.get('object_id')
     text = request.form.get('appeal_text')
 

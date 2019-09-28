@@ -16,8 +16,8 @@ class TaskManager:
     def get_q(self):
         return self.q
 
-    def start_initial_analyze(self, appeal_id):
-        self.q.enqueue(classify_appeal, appeal_id)
+    def start_initial_analyze(self, appeal_id, text):
+        self.q.enqueue(classify_appeal, appeal_id, text)
 
     def __del__(self):
         self.r.close()
