@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <title>List of events</title>
+{% endblock %}
+
+   {% block content %}
+
+    <div class="hero-wrap hero-wrap-2" style="background-color: #cccccc;">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-8 ftco-animate text-center text-center mt-5">
+          	<p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Domain</span></p>
+            <h1 class="mb-3 bread">Domain</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-domain">
+    	<div class="container">
+    		<div class="row d-flex align-items-center justify-content-center">
+    			<div class="col-lg-10 p-5 ftco-wrap ftco-animate">
+    				<form action="#" class="domain-form d-flex mb-3">
+              <div class="form-group domain-name">
+                <input type="text" class="form-control name px-4" placeholder="Введите поисковый запрос">
+              </div>
+              <div class="form-group domain-select d-flex">
+
+                <input type="submit" class="search-domain btn btn-primary text-center" value="Поиск">
+	            </div>
+            </form>
+
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <h2 class="mb-4">Список обращений</h2>
+            <p>Обзор поданных жалоб и предложений</p>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div class="table-responsive">
+	    				<table class="table">
+						    <thead class="thead-primary">
+						      <tr>
+						        <th>Номер</th>
+						        <th>Адрес</th>
+						        <th>Класс</th>
+						        <th>Число</th>
+						        <th>Статус</th>
+						        <th>Подробнее</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+                            {% for event in events %}
+						      <tr>
+						        <td class="color">{{event['id']}}</td>
+						        <td>{{event['object_id']}}</td>
+						        <td>{{event['category']}}</td>
+						        <td>{{ event['action'] }}</td>
+						        <td>{{ event['status'] }}</td>
+						        <td><a href="#" class="btn btn-primary"> <img src="{{ url_for('static', filename='images/info.png') }}"> </a>  </td>
+						      </tr>
+                            {% endfor %}
+
+						    </tbody>
+						  </table>
+					  </div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+     <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+
+          <div class="col-md">
+             <div class="ftco-footer-widget mb-4">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+{% endblock %}

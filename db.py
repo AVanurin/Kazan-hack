@@ -1,10 +1,29 @@
 import sqlite3
+from datetime import datetime
 
 
 def _connect():
     conn = sqlite3.connect('db.sqlite')
     c = conn.cursor()
     return conn, c
+
+def test_db():
+    conn, c = _connect()
+    c.execute("SELECT * FROM appeals;")
+    print(c.fetchall())
+    c.execute("SELECT * FROM events;")
+    print(c.fetchall())
+    conn.close()
+
+def init_dumb_data():
+    conn, c = _connect()
+
+    with open('dumb_bd.sql', 'r') as f:
+        s = f.read()
+
+    c.executescript(s)
+    conn.commit()
+    conn.close()
 
 
 def init_db():
@@ -52,11 +71,42 @@ def get_all_appeals():
     return result
 
 
-def get_all_tasks():
+def change_appeal_status(appeal_id, new_status, action_description, initiator):
     conn, c = _connect()
 
-    s = "SELECT * FROM tasks;"
-    c.execute(s)
+    now_timestamp = str(datetime.now())
 
-    result = c.fetchall()
-    return result
+    s = f"""
+    UPDATE appeals SET status={new_status} WHERE id=={appeal_id};
+    INSERT INTO events (appeal_id, action, initiator, event_datetime) VALUES 
+    ({appeal_id}, "{action_description}", "{str(initiator)}", "{now_timestamp}");
+    """
+
+    c.executescript(s)
+    conn.commit()
+    conn.close()
+
+
+def get_journal_information():
+    conn, c = _connect()
+    c.execute("SELECT * FROM journal;")
+    r = c.fetchall()
+    conn.close()
+
+    return r
+
+
+def get_events_with_appeal_id(appeal_id):
+    conn, c = _connect()
+    c.execute(f"SELECT * FROM events WHERE appeal_id=={appeal_id}")
+    r = c.fetchone()
+
+    return r
+
+
+def get_appeal_status_information(appeal_id):
+    conn, c = _connect()
+    c.execute(f"SELECT * FROM journal WHERE appeal_id=={appeal_id};")
+    r = c.fetchall()
+    conn.close()
+    return r
