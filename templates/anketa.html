@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+{% block title %}
+    <title> Event details </title>
+{% endblock %}
+      {% block content %}
+    <div class="hero-wrap hero-wrap-2" style="background-color: #cccccc;">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-8 ftco-animate text-center text-center mt-5">
+          	<p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Hosting</span></p>
+            <h1 class="mb-3 bread">Hosting</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+
+
+<div class="w3-container">
+  <h2>Карточка обращения</h2>
+
+  <div class="w3-row">
+    <a href="javascript:void(0)" onclick="openCity(event, 'London');">
+      <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-red">Данные карточки</div>
+    </a>
+
+    <a href="javascript:void(0)" onclick="openCity(event, 'Tokyo');">
+      <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding ">Маршрут</div>
+    </a>
+  </div>
+  
+  
+
+  
+
+  <div id="London" class="w3-container city" >
+        	<div class="container">
+    		<div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            </div>
+				
+			
+        </div>
+		
+		
+<div class="col-md-8 ftco-animate">
+            <h2 class="mb-3">Номер обращения</h2>
+            <p>{{ context['appeal_id']  }}</p>
+         <h2 class="mb-3">Объект</h2>
+            <p>{{ context['subject_id'] }}</p>
+         <h2 class="mb-3">Категория</h2>
+            <p>{{ context['category'] }}</p>
+         <h2 class="mb-3">От даты</h2>
+            <p>{{ context['start_date'] }}</p>
+         <h2 class="mb-3">Статус</h2>
+            <p>{{ context['status']}}</p>
+         
+		 </div> <!-- .col-md-8 -->		
+
+
+		
+		
+	<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div id="accordion">
+    					<div class="row">
+    						
+
+    						<div class="col-md-12">
+    							<div class="card">
+						        <div class="card-header">
+										  <a class="card-link" data-toggle="collapse"  href="#menu4" aria-expanded="false" aria-controls="menu4">Просмотреть текст обращения <span class="collapsed"><i class="ion-ios-arrow-up"></i></span><span class="expanded"><i class="ion-ios-arrow-down"></i></span></a>
+						        </div>
+						        <div id="menu4" class="collapse">
+						          <div class="card-body">
+												<p>{{context['text']}}</p>
+						          </div>
+						        </div>
+						      </div>
+
+						      
+
+						      
+    						</div>
+    					</div>
+				    </div>
+    			</div>
+    		</div>
+			
+
+  </div>
+
+
+
+ 
+</div>
+
+  <div id="Tokyo" class="w3-container city" style="display:none">
+	
+	<section class="ftco-section">
+    	<div class="container">
+
+    		<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div class="table-responsive">
+	    				<table class="table">
+						    <thead class="thead-primary">
+						      <tr>
+						        <th>Действие</th>
+						        <th>Ответсвенный</th>
+                                  <th>Дата</th>
+						      </tr>
+						    </thead>
+						    <tbody
+                            {% for action in context['actions'] %}>
+						      <tr>
+						        <td class="color">{{ action['action'] }}</td>
+						        <td> {{ action['initiator'] }} </td>
+                                  <td>{{ action['datetime'] }}</td>
+						      </tr>
+                            {% endfor %}
+						      
+						    </tbody>
+						  </table>
+					  </div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+	
+
+  </div>
+    {% endblock %}

@@ -52,5 +52,10 @@ def response_with_event_data(event_id):
     return str(response)
 
 
+@app.route('/event/<appeal_id>')
+def event_page(appeal_id):
+    return journal_view.render_event(appeal_id)
+
+
 if __name__ == '__main__':
     app.run()

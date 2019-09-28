@@ -35,7 +35,7 @@ def _make_body(text):
     b = {
   "alert": {
     "identifier": "146121",
-    "sender": "Santechnik",
+    "sender": "Plumber",
     "sent": sent_date,
     "status": "Actual",
     "msgType": "Alert",
@@ -94,6 +94,7 @@ def _make_body(text):
 
     return str(b)
 
+
 class CAPManager:
     def __init__(self):
         pass
@@ -105,6 +106,3 @@ class CAPManager:
         r = requests.post(base_url, data=body.encode("utf-8"), headers=headers)
         print(r.content)
 
-if __name__ == "__main__":
-  cm = CAPManager()
-  cm._send_message("Тестовое сообщение")

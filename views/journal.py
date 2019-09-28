@@ -4,9 +4,16 @@ import db
 
 def render_all_events_page():
     events = db.get_journal_information()
-    print(events)
     context = make_events_context(events)
     return render_template("eventslist.html", events=context)
+
+
+def render_event(appeal_id):
+    main_information = db.get_appeal_by_id(appeal_id)
+    actions_information = db.get_appeal_status_information(appeal_id)
+    context = make_event_details_context(main_information, actions_information)
+    print(context)
+    return render_template("anketa.html", context=context)
 
 
 def render_event_details(appeal_id):
@@ -31,7 +38,25 @@ def make_events_context(events_journal):
     return context
 
 
-def make_event_details_context(events, appeal):
-    context = []
-    context['id'] = appeal[0]
-    return context
+def make_event_details_context(appeal, actions):
+    d = {}
+
+    d['appeal_id'] = appeal[0]
+    d['subject_id'] = appeal[1]
+    d['text'] = appeal[2]
+    d['start_date'] = appeal[3]
+    d['category'] = appeal[4]
+    d['assignee'] = appeal[5]
+
+    actions_list = []
+    for action in actions:
+        tmp = {}
+        tmp['action'] = action[1]
+        tmp['initiator'] = action[2]
+        tmp['datetime'] = action[3]
+        tmp['assignee'] = action[7]
+        tmp['status'] = action[10]
+        actions_list.append(tmp)
+    d['actions'] = actions_list
+
+    return d
