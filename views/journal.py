@@ -11,8 +11,12 @@ def render_all_events_page():
 def render_event(appeal_id):
     main_information = db.get_appeal_by_id(appeal_id)
     actions_information = db.get_appeal_status_information(appeal_id)
+    print(main_information, actions_information)
     context = make_event_details_context(main_information, actions_information)
-    print(context)
+    object_data = db.get_object_data(main_information[1])
+    if object_data:
+        print(object_data)
+        context['subject_id'] = object_data[1]
     return render_template("anketa.html", context=context)
 
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Objects>
+   <Object>
+        <object_id>12345</object_id>
+        <name>домохозяйство Пролетарский проспект, 20</name>
+        <location>
+            <lattituide>59.999181</lattituide>
+            <longitude>30.144061</longitude>
+            <address>СПб,Пролетарский проспект, 20</address>
+        </location>
+    </Object>
+    <Object>
+        <object_id>12347</object_id>
+        <name>домохозяйство Хвойная улица, 27</name>
+        <location>
+            <lattituide>60.000507</lattituide>
+            <longitude>30.143406</longitude>
+            <address>СПб,Хвойная улица, 27</address>
+        </location>
+    </Object>
+    <Object>
+        <object_id>12346</object_id>
+        <name>домохозяйство Пролетарский проспект, 26</name>
+        <location>
+            <lattituide>59.999206</lattituide>
+            <longitude>30.142261</longitude>
+            <address>СПб,Пролетарский проспект, 26</address>
+        </location>
+    </Object>
+    <Object>
+        <object_id>12348</object_id>
+        <name>территория Ольгино, Санкт-Петербург, Россия, Садовая улица, 46</name>
+        <location>
+            <lattituide>59.998282</lattituide>
+            <longitude>30.134295</longitude>
+            <address>территория Ольгино, Санкт-Петербург, Россия, Садовая улица, 46</address>
+        </location>
+    </Object>
+</Objects>

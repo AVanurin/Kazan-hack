@@ -71,6 +71,26 @@ def get_all_appeals():
     return result
 
 
+def set_category(appeal_id, new_categoty):
+    conn, c = _connect()
+
+    s = f"UPDATE appeals SET category='{new_categoty}' WHERE id={appeal_id};"
+    print(s)
+    c.execute(s)
+    conn.commit()
+    conn.close()
+
+
+def get_object_data(object_id):
+    conn, c = _connect()
+    s = f"SELECT * FROM objects WHERE id={object_id};"
+
+    c.execute(s)
+    r = c.fetchone()
+    conn.close()
+    return r
+
+
 def change_appeal_status(appeal_id, new_status, action_description, initiator):
     conn, c = _connect()
 

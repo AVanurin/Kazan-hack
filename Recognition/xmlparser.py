@@ -25,6 +25,7 @@ class Classifier:
 
     @staticmethod
     def classifiers_from_xml(xml):
+        print(xml)
         list_of_classifiers = _parse_from_etree(_xml_string_to_tree(xml))
         return Classification(list_of_classifiers)
 
@@ -33,10 +34,13 @@ class Classification:
     def __init__(self, classifiers_list):
         print(classifiers_list)
         self.classifiers = classifiers_list
+        self.classifiers.sort(key=lambda val: val.probability, reverse=True)
+
+    def get_class_type(self):
+        return self.classifiers[0].element_id
 
     def __str__(self):
         r = ''
-        self.classifiers.sort(key=lambda val: val.probability, reverse=True)
         for classifier in self.classifiers:
             r += f'\n<{classifier.class_id}> {classifier.element_id} with {classifier.probability}'
         return r

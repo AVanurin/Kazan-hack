@@ -26,7 +26,7 @@ def _make_time():
   return r + "+00:00"
 
 
-def _make_body(text):
+def _make_body(object_id, text, job ,assignee_name ,address ,lattitude, longitude, appeal_id):
     """
     "2017-12-26T09:17:08+00:00"
     """
@@ -35,7 +35,7 @@ def _make_body(text):
     b = {
   "alert": {
     "identifier": "146121",
-    "sender": "Plumber",
+    "sender": job,
     "sent": sent_date,
     "status": "Actual",
     "msgType": "Alert",
@@ -70,7 +70,7 @@ def _make_body(text):
         },
         {
         "valueName": "Assignee",
-        "value": "Сантехник Петр"
+        "value": assignee_name
         },
       ],
       "language": "ru_RU",
@@ -81,12 +81,12 @@ def _make_body(text):
       "certainty": "Observed",
       "audience": "all",
       "effective": sent_date,
-      "senderName": "Григорьев Е.Н.",
-      "headline": "Обращение в УК #13",
+      "senderName": assignee_name,
+      "headline": f"Обращение в УК #13-{appeal_id}",
       "description": text,
       "area": {
-        "areaDesc": "Английский переулок 30",
-        "circle": "59.923186,30.285471 0.0"
+        "areaDesc": address,
+        "circle": str(lattitude) +','+ str(longitude) + " 0.0"
       }
     }
   }
@@ -99,8 +99,9 @@ class CAPManager:
     def __init__(self):
         pass
 
-    def _send_message(self, description):
-        body = _make_body(description)
+
+    def _send_message(self, object_id, text, job ,assignee_name ,address ,lattitude, longitude, appeal_id):
+        body = _make_body(object_id, text, job ,assignee_name ,address ,lattitude, longitude, appeal_id)
         headers = _make_headers()
 
         r = requests.post(base_url, data=body.encode("utf-8"), headers=headers)

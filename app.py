@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import request
 from flask import render_template
-from datetime import date
+from datetime import datetime
 import views.static as static_view
 import views.journal as journal_view
 import view
@@ -31,7 +31,7 @@ def another_name():
     object_id = request.form.get('object_id')
     text = request.form.get('appeal_text')
 
-    r = handlers._register_new_appeal(subject_id=object_id, text=text, date=str(date.today()))
+    r = handlers._register_new_appeal(subject_id=object_id, text=text, date=str(datetime.now()))
     appeal_id = str(r)
     return render_template('result.html', task=appeal_id)
 
