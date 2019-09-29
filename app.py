@@ -57,5 +57,12 @@ def event_page(appeal_id):
     return journal_view.render_event(appeal_id)
 
 
+@app.route('/rest/event', methods=['GET', 'POST'])
+def rest_register_new_appeal():
+    data = request.json
+    print("Here", data)
+    api.register_new_appeal_json(data)
+
+
 if __name__ == '__main__':
     app.run(port='5006', host='0.0.0.0')
