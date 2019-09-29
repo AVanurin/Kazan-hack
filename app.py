@@ -58,4 +58,4 @@ def event_page(appeal_id):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port='5006', host='0.0.0.0')
